@@ -11,7 +11,12 @@ public class Flight {
     private String departureAirport;
     private String departureTime;
     private int numberOfSeatsTaken = 0;
+    private final int BAG_WEIGHT = 15;
+    private int currentWeight = 0;
 
+    public int getCurrentWeight() {
+        return currentWeight;
+    }
 
     public Flight(EPlane plane, int flightNumber,
                   String destination, String departureAirport, String departureTime) {
@@ -23,6 +28,25 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
+    public boolean addPassenger(Passenger passenger) {
+        if(getRemainingSeatCount() > 0 && addNewBags(passenger.getNumberOfBags()))
+            return passengers.add(passenger);
+        return false;
+    }
+
+    private boolean addNewBags(int bagCount) {
+        if(hasEnoughWeightCapacity(bagCount)) {
+            this.currentWeight += (bagCount * BAG_WEIGHT);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasEnoughWeightCapacity(int newBagCount) {
+        return ((this.plane.getTOTAL_WEIGHT_CAPACITY() -  this.currentWeight) - (newBagCount * BAG_WEIGHT)) >= 0;
+    }
+
+
     public int getRemainingSeatCount() {
         return this.plane.getCAPACITY() - this.numberOfSeatsTaken();
     }
@@ -33,10 +57,5 @@ public class Flight {
 
     public Passenger getPassenger(int index) {
         return passengers.get(index);
-    }
-    public boolean addPassenger(Passenger passenger) {
-        if(getRemainingSeatCount() > 0)
-            return passengers.add(passenger);
-        return false;
     }
 }

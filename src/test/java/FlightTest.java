@@ -34,4 +34,10 @@ public class FlightTest {
         assertTrue(this.flight.addPassenger(passenger));
         assertEquals(39, this.flight.getRemainingSeatCount());
     }
+    @Test public void canReserveWeightForPassenger() {
+        flight = new Flight(EPlane.LOW_WEIGHT_CAPACITY_PLANE, 1,
+                "Glasgow", "Edinburgh", "19:00");
+        flight.addPassenger(passenger);
+        assertFalse(flight.addPassenger(passenger));
+    }
 }

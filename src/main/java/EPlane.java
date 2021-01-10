@@ -1,9 +1,10 @@
 package main.java;
 
 public enum EPlane {
-    BOEING747 (200, 40),
-    A310 (150, 30),
-    CHAICOVSKY (250, 90);
+    BOEING747 (20000, 40),
+    A310 (15000, 30),
+    CHAICOVSKY (25000, 90),
+    LOW_WEIGHT_CAPACITY_PLANE(50, 20);
 
     private final int TOTAL_WEIGHT_CAPACITY;
     private final int CAPACITY;

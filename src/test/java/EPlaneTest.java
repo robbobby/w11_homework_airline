@@ -10,6 +10,6 @@ public class EPlaneTest {
         assertEquals(40, EPlane.BOEING747.getCAPACITY());
     }
     @Test public void hasWeightCapacity() {
-        assertEquals(250, EPlane.CHAICOVSKY.getTOTAL_WEIGHT_CAPACITY());
+        assertEquals(25000, EPlane.CHAICOVSKY.getTOTAL_WEIGHT_CAPACITY());
     }
 }
